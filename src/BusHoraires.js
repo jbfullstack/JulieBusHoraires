@@ -88,7 +88,7 @@ const BusHoraires = () => {
         <button onClick={fetchHoraires}>Chercher les horaires</button>
       </div>
       <footer>
-        Fait pour Julie{" "}
+        Fait pour Julia{" "}
         <span role="img" aria-label="fleur">
           🌸
         </span>
