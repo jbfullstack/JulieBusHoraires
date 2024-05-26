@@ -5,6 +5,7 @@ const BusHoraires = () => {
   const [loading, setLoading] = useState(false);
   const [stopCode, setStopCode] = useState("SEM:2273");
   const [error, setError] = useState(null);
+  const [stopName, setStopName] = useState("");
 
   const fetchHoraires = async () => {
     setLoading(true);
@@ -40,6 +41,11 @@ const BusHoraires = () => {
         return acc;
       }, {});
 
+      // Mettre à jour le nom de l'arrêt avec le premier stopName trouvé
+      if (data.length > 0 && data[0].times.length > 0) {
+        setStopName(data[0].times[0].stopName);
+      }
+
       setHoraires(groupedHoraires);
     } catch (error) {
       console.error("Erreur lors de la récupération des horaires :", error);
@@ -55,9 +61,14 @@ const BusHoraires = () => {
 
   return (
     <div>
-      <h1>
-        <i className="fas fa-bus"></i> Prochains horaires à l'arrêt Chavant
-      </h1>
+      {error ? (
+        <h1>Oupsy 😅</h1>
+      ) : (
+        <h1>
+          <i className="fas fa-bus"></i> Horaires des prochains bus à l'arrêt{" "}
+          {stopName || "Chavant"}
+        </h1>
+      )}
       {loading ? (
         <p>Chargement...</p>
       ) : error ? (
@@ -87,7 +98,7 @@ const BusHoraires = () => {
         <button onClick={fetchHoraires}>Chercher les horaires</button>
       </div>
       <footer>
-        Fait pour Julia{" "}
+        Fait pour Julie{" "}
         <span role="img" aria-label="fleur">
           🌸
         </span>
