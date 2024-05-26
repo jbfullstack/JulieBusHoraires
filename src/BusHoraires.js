@@ -56,8 +56,7 @@ const BusHoraires = () => {
   return (
     <div>
       <h1>
-        <i className="fas fa-bus"></i> Horaires des prochains bus à l'arrêt
-        Chavant
+        <i className="fas fa-bus"></i> Prochains horaires à l'arrêt Chavant
       </h1>
       {loading ? (
         <p>Chargement...</p>
